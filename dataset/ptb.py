@@ -1,25 +1,25 @@
-# coding: utf-8
-import sys
+# # coding: utf-8
+# import sys
 import os
-sys.path.append('..')
+# sys.path.append('..')
 try:
     import urllib.request
 except ImportError:
-    raise ImportError('Use Python3!')
+    raise ImportError('Use Python3!') from None
 import pickle
 import numpy as np
 
 
 url_base = 'https://raw.githubusercontent.com/tomsercu/lstm/master/data/'
 key_file = {
-    'train':'ptb.train.txt',
-    'test':'ptb.test.txt',
-    'valid':'ptb.valid.txt'
+    'train': 'ptb.train.txt',
+    'test': 'ptb.test.txt',
+    'valid': 'ptb.valid.txt'
 }
 save_file = {
-    'train':'ptb.train.npy',
-    'test':'ptb.test.npy',
-    'valid':'ptb.valid.npy'
+    'train': 'ptb.train.npy',
+    'test': 'ptb.test.npy',
+    'valid': 'ptb.valid.npy'
 }
 vocab_file = 'ptb.vocab.pkl'
 
@@ -61,7 +61,7 @@ def load_vocab():
 
     words = open(file_path).read().replace('\n', '<eos>').strip().split()
 
-    for i, word in enumerate(words):
+    for _, word in enumerate(words):
         if word not in word_to_id:
             tmp_id = len(word_to_id)
             word_to_id[word] = tmp_id
@@ -74,11 +74,12 @@ def load_vocab():
 
 
 def load_data(data_type='train'):
-    '''
+    """
         :param data_type: データの種類：'train' or 'test' or 'valid (val)'
         :return:
-    '''
-    if data_type == 'val': data_type = 'valid'
+    """
+    if data_type == 'val':
+        data_type = 'valid'
     save_path = dataset_dir + '/' + save_file[data_type]
 
     word_to_id, id_to_word = load_vocab()

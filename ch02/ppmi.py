@@ -1,8 +1,8 @@
 # coding: utf-8
-import sys
-sys.path.append('..')
+# import sys
 import numpy as np
-from common.util import preprocess, create_co_matrix, cos_similarity, ppmi
+# sys.path.append('..')
+from common.util import preprocess, create_co_matrix, ppmi
 
 
 text = 'You say goodbye and I say hello.'
